@@ -10,9 +10,10 @@ class MainScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       backgroundColor: MyColors.bgWhite,
       appBar: myAppBar,
-      body: bodyContainer,
+      body: SingleChildScrollView(child: bodyContainer),
     );
   }
 }

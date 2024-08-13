@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
-import 'package:sportify/presentations/pages/home/widgets/login_text.dart';
-import 'package:sportify/presentations/pages/home/widgets/logo.dart';
+import 'package:sportify/presentations/pages/login/widgets/login_text.dart';
+import 'package:sportify/presentations/pages/login/widgets/logo.dart';
 import 'package:sportify/presentations/pages/themes/image_const.dart';
 import 'package:sportify/presentations/pages/themes/my_colors.dart';
 import 'package:sportify/widgets/main_scaffold.dart';
