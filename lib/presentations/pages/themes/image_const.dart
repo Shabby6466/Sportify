@@ -7,5 +7,6 @@ class ImageConstants{
   static const String search = "assets/images/search.png";
   static const String settings = "assets/images/settings.png";
   static const String facebook = "assets/images/facebook.png";
+  static const String profile = "assets/images/profile.png";
 
 }

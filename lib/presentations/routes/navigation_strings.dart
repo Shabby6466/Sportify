@@ -1,5 +1,5 @@
 class NavigationStrings {
-  static const String Splash = '/';
+  static const String splash = '/';
   static String home = '/home';
   static String login = '/login';
 }

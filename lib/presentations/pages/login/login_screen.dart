@@ -5,13 +5,17 @@ import 'package:sportify/presentations/pages/login/widgets/login_text.dart';
 import 'package:sportify/presentations/pages/login/widgets/logo.dart';
 import 'package:sportify/presentations/pages/themes/image_const.dart';
 import 'package:sportify/presentations/pages/themes/my_colors.dart';
+import 'package:sportify/presentations/routes/navigation.dart';
+import 'package:sportify/presentations/routes/navigation_strings.dart';
+import 'package:sportify/services/di/getit.dart';
 import 'package:sportify/widgets/main_scaffold.dart';
 
 class LoginScreen extends StatelessWidget {
-const LoginScreen({super.key});
+  const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final navigation = locator<AppNavigation>();
     final screenUtil = GetIt.I<ScreenUtil>();
     return MainScaffold(
         myAppBar: AppBar(
@@ -71,7 +75,9 @@ const LoginScreen({super.key});
                 ),
               ),
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  navigation.goNamed(context, NavigationStrings.home);
+                },
                 child: Container(
                   height: screenUtil.setHeight(42),
                   width: MediaQuery.sizeOf(context).width,
