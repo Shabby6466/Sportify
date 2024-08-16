@@ -76,7 +76,7 @@ class LoginScreen extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  navigation.goNamed(context, NavigationStrings.home);
+                  navigation.goNamed(context, NavigationStrings.bottomBar);
                 },
                 child: Container(
                   height: screenUtil.setHeight(42),

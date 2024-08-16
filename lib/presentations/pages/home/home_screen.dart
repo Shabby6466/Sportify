@@ -47,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           Padding(
             padding: EdgeInsets.fromLTRB(
-                screenUtil.setSp(0), 1.8 * 80, screenUtil.setSp(0), 0),
+                screenUtil.setSp(0), 80, screenUtil.setSp(0), 0),
             child: const Divider(),
           ),
           SizedBox(
