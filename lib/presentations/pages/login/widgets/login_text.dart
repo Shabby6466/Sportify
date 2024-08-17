@@ -5,17 +5,23 @@ import 'package:sportify/presentations/pages/themes/my_colors.dart';
 
 class LoginTextField extends StatelessWidget {
   final String label, hint;
+  final TextEditingController controller;
+  final bool obscuretext;
 
   const LoginTextField({
     super.key,
     required this.label,
     required this.hint,
+    required this.controller,
+    this.obscuretext = false,
   });
 
   @override
   Widget build(BuildContext context) {
     final screenUtil = GetIt.I<ScreenUtil>();
     return TextField(
+      obscureText: obscuretext,
+      controller: controller,
       style: Theme.of(context)
           .textTheme
           .bodyMedium!

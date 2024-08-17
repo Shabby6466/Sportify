@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:sportify/presentations/pages/home/home_screen.dart';
 import 'package:sportify/presentations/pages/login/login_screen.dart';
 import 'package:sportify/presentations/pages/calorie_calc/calorie.dart';
+import 'package:sportify/presentations/pages/signup/signup_screen.dart';
 import 'package:sportify/presentations/pages/splash/splash_screen.dart';
 import 'package:sportify/presentations/routes/navigation_strings.dart';
 import 'package:sportify/widgets/bottom_bar.dart';
@@ -39,6 +40,11 @@ class AppRouting {
         builder: (BuildContext context, GoRouterState state) {
           return const MyBottomBar();
         }),
-
+    GoRoute(
+        path: NavigationStrings.signUp,
+        name: NavigationStrings.signUp,
+        builder: (BuildContext context, GoRouterState state) {
+          return const SignupScreen();
+        }),
   ]);
 }

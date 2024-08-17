@@ -21,7 +21,7 @@ class Logo extends StatelessWidget {
         ),
         SizedBox(width: screenUtil.setWidth(2)),
         Align(
-            alignment: const Alignment(0, 0.05),
+            alignment: const Alignment(0, 0.04),
             child: Text(
               "Pro",
               style: Theme.of(context).textTheme.titleLarge!.copyWith(

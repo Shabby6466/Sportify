@@ -4,4 +4,5 @@ class NavigationStrings {
   static String login = '/login';
   static String mealCalc = '/meal';
   static String bottomBar = '/bottom_bar';
+  static String signUp = '/sign_up';
 }

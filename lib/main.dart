@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
+import 'package:sportify/presentations/bloc/calendar/calendar_bloc.dart';
 import 'package:sportify/presentations/bloc/calorie/calorie_bloc.dart';
+import 'package:sportify/presentations/bloc/login/login_bloc.dart';
+import 'package:sportify/presentations/bloc/singup/signup_bloc.dart';
 import 'package:sportify/presentations/routes/routes.dart';
 import 'package:sportify/services/di/getit.dart';
 
@@ -22,8 +25,13 @@ class MyApp extends StatelessWidget {
       ensureScreenSize: true,
       minTextAdapt: true,
       useInheritedMediaQuery: true,
-      child: BlocProvider(
-        create: (context) => CalorieBloc(),
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (BuildContext context) => CalorieBloc()),
+          BlocProvider(create: (BuildContext context) => CalendarBloc()),
+          BlocProvider(create: (BuildContext context) => SignupBloc()),
+          BlocProvider(create: (BuildContext context) => LoginBloc()),
+        ],
         child: MaterialApp.router(
           debugShowCheckedModeBanner: false,
           routerConfig: AppRouting.router,

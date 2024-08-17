@@ -30,25 +30,7 @@ class _CalorieCalculatorState extends State<CalorieCalculator> {
     MyTextFields textfields = MyTextFields();
     final screenUtil = GetIt.I<ScreenUtil>();
     return MainScaffold(
-      myAppBar: AppBar(
-        surfaceTintColor: MyColors.bgWhite,
-        toolbarHeight: 80,
-        title: Text(
-          "Calorie Calculator",
-          style: Theme.of(context).textTheme.labelLarge!.copyWith(
-                fontSize: screenUtil.setSp(24),
-                fontWeight: FontWeight.bold,
-              ),
-        ),
-        actions: [
-          Icon(CupertinoIcons.checkmark_alt_circle_fill,
-              size: screenUtil.setHeight(25)),
-          SizedBox(
-            width: screenUtil.setWidth(30),
-          ),
-        ],
-        backgroundColor: MyColors.bgWhite,
-      ),
+      title: "Calorie Calculator",
       bodyContainer: Column(
         children: [
           Padding(

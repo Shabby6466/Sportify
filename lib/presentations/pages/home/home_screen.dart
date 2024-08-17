@@ -21,27 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final screenUtil = GetIt.I<ScreenUtil>();
     return MainScaffold(
-      myAppBar: AppBar(
-        toolbarHeight: 80,
-        title: Text(
-          "Home",
-          style: Theme.of(context).textTheme.labelLarge!.copyWith(
-                fontSize: screenUtil.setSp(24),
-                fontWeight: FontWeight.bold,
-              ),
-        ),
-        actions: [
-          Icon(CupertinoIcons.search, size: screenUtil.setHeight(25)),
-          SizedBox(
-            width: screenUtil.setWidth(10),
-          ),
-          Icon(CupertinoIcons.bell_circle, size: screenUtil.setHeight(25)),
-          SizedBox(
-            width: screenUtil.setWidth(30),
-          ),
-        ],
-        backgroundColor: MyColors.bgWhite,
-      ),
+      title: "Home",
       bodyContainer: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

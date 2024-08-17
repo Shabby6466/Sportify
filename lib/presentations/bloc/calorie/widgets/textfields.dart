@@ -7,8 +7,11 @@ class MyTextFields {
     required void Function(String) onChanged,
   }) {
     return TextFormField(
+      style: TextStyle(fontSize: 18),
+      maxLines: 1,
       validator: validator,
       decoration: InputDecoration(
+        labelStyle: TextStyle(fontSize: 18,fontWeight: FontWeight.w100),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(18)),
         label: Text(label),
       ),
