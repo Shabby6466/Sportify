@@ -1,17 +1,26 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
 import 'package:sportify/presentations/pages/home/widgets/yt_video.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class Video extends StatelessWidget {
-  final String text, VideoUrl;
+  final String text, videoUrl;
 
-  const Video({
+  Video({
     super.key,
     required this.text,
-    required this.VideoUrl,
+    required this.videoUrl,
   });
+
+  YoutubePlayerController? _activeController;
+
+  void _onPlay(YoutubePlayerController playerController) {
+    if (_activeController != null && _activeController != playerController) {
+      _activeController!.pause();
+    }
+    _activeController = playerController;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +33,7 @@ class Video extends StatelessWidget {
       child: Wrap(
         children: [
           Padding(
-            padding:  EdgeInsets.only(bottom:screenUtil.setHeight(10)),
+            padding: EdgeInsets.only(bottom: screenUtil.setHeight(10)),
             child: Text(
               text,
               style: Theme.of(context).textTheme.bodyLarge!.copyWith(
@@ -33,7 +42,10 @@ class Video extends StatelessWidget {
                   ),
             ),
           ),
-          YtVideoPlayer(videoUrl: VideoUrl),
+          YtVideoPlayer(
+            videoUrl: videoUrl,
+            onPlay: _onPlay,
+          ),
         ],
       ),
     );

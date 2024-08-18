@@ -20,15 +20,13 @@ class Logo extends StatelessWidget {
               color: MyColors.primaryBlack),
         ),
         SizedBox(width: screenUtil.setWidth(2)),
-        Align(
-            alignment: const Alignment(0, 0.04),
-            child: Text(
-              "Pro",
-              style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                  fontSize: screenUtil.setSp(40),
-                  fontWeight: FontWeight.bold,
-                  color: MyColors.buttonPrimary),
-            ))
+        Text(
+          "Pro",
+          style: Theme.of(context).textTheme.titleLarge!.copyWith(
+              fontSize: screenUtil.setSp(40),
+              fontWeight: FontWeight.bold,
+              color: MyColors.buttonPrimary),
+        )
       ],
     );
   }

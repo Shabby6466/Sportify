@@ -6,7 +6,6 @@ import 'package:sportify/presentations/pages/home/widgets/horizontal_list.dart';
 import 'package:sportify/presentations/pages/home/widgets/video.dart';
 import 'package:sportify/presentations/pages/home/widgets/video_urls.dart';
 import 'package:sportify/presentations/pages/themes/image_const.dart';
-import 'package:sportify/presentations/pages/themes/my_colors.dart';
 import 'package:sportify/widgets/main_scaffold.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -96,27 +95,27 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
               ),
-              const HorizontalList(),
+              HorizontalList(),
               Padding(
                 padding: EdgeInsets.only(
                     left: screenUtil.setWidth(30),
                     right: screenUtil.setWidth(32),
                     top: screenUtil.setHeight(30),
                     bottom: screenUtil.setHeight(30)),
-                child: const Wrap(
+                child: Wrap(
                   children: [
                     Video(
                         text: "Calisthenics Explained",
-                        VideoUrl: VideoUrls.calisthenicsExplained),
+                        videoUrl: VideoUrls.calisthenicsExplained),
                     Video(
                         text: "How your body changes with Calisthenics",
-                        VideoUrl: VideoUrls.howBodyChanges),
+                        videoUrl: VideoUrls.howBodyChanges),
                     Video(
                         text: "5 Ways to Improve Grip",
-                        VideoUrl: VideoUrls.fiveWaysToImproveGrip),
+                        videoUrl: VideoUrls.fiveWaysToImproveGrip),
                     Video(
                         text: "Push-Ups VS Dips",
-                        VideoUrl: VideoUrls.pushUpVsDips),
+                        videoUrl: VideoUrls.pushUpVsDips),
                   ],
                 ),
               )
