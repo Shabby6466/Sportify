@@ -55,13 +55,9 @@ class _YtVideoPlayerState extends State<YtVideoPlayer>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return ClipRRect(
-      clipBehavior: Clip.hardEdge,
-      borderRadius: BorderRadius.circular(32),
-      child: YoutubePlayer(
-        controller: _playerController!,
-        showVideoProgressIndicator: true,
-      ),
+    return YoutubePlayer(
+      controller: _playerController!,
+      showVideoProgressIndicator: true,
     );
   }
 }

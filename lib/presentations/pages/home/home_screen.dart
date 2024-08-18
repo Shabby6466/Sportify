@@ -27,6 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
       _activeController = playerController;
     });
   }
+
   @override
   Widget build(BuildContext context) {
     final screenUtil = GetIt.I<ScreenUtil>();
@@ -106,7 +107,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
               ),
-              HorizontalList(onPlay: _onPlay,),
+              HorizontalList(
+                onPlay: _onPlay,
+              ),
               Padding(
                 padding: EdgeInsets.only(
                     left: screenUtil.setWidth(30),

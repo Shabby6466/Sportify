@@ -12,23 +12,28 @@ class CalendarStateInitial extends CalendarState {}
 class CalendarStateLoaded extends CalendarState {
   final List<DateTime> days;
   final DateTime? selectedDate;
+  final List<DateTime> tickedDates;
 
-  const CalendarStateLoaded(
-    this.days,
-    this.selectedDate,
-  );
-
-  @override
-  List<Object> get props => [days, selectedDate ?? Object(), ];
+  const CalendarStateLoaded({
+    required this.days,
+    required this.selectedDate,
+    required this.tickedDates,
+  });
 
   CalendarStateLoaded copyWith({
     List<DateTime>? days,
     DateTime? selectedDate,
-    List<DateTime>? ticked,
+    List<DateTime>? tickedDates,
   }) {
     return CalendarStateLoaded(
-      days ?? this.days,
-      selectedDate ?? this.selectedDate,
+      days: days ?? this.days,
+      selectedDate: selectedDate ?? this.selectedDate,
+      tickedDates: tickedDates ?? this.tickedDates,
     );
   }
+  @override
+  List<Object> get props => [days,selectedDate ?? DateTime.utc(0),tickedDates];
 }
+
+
+

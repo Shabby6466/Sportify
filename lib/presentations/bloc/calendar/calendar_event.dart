@@ -17,3 +17,12 @@ class TapEvent extends CalendarEvent {
   @override
   List<Object?> get props => [day];
 }
+
+class LongPressEvent extends CalendarEvent {
+  final DateTime ticked;
+
+  const LongPressEvent(this.ticked);
+
+  @override
+  List<Object?> get props => [ticked];
+}

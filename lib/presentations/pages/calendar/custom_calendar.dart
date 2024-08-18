@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -78,34 +77,41 @@ class _CustomCalendarState extends State<CustomCalendar> {
                     bool isSelected = day.day == DateTime.now().day &&
                         day.month == DateTime.now().month &&
                         day.year == DateTime.now().year;
-                    bool isTapped = day.day == (state).selectedDate?.day &&
-                        day.month == (state).selectedDate?.month &&
-                        day.year == (state).selectedDate?.year;
+
                     bool isBeforeToday = day.isBefore(today);
+                    bool isTicked = state.tickedDates.contains(day);
+
                     return GestureDetector(
-                      onTap: () {
-                        isBeforeToday
-                            ? null
-                            : context.read<CalendarBloc>().add(TapEvent(day));
+                      onDoubleTap: () {
+                        if (!isBeforeToday) {
+                          context.read<CalendarBloc>().add(LongPressEvent(day));
+                        }
                       },
                       child: Container(
                         margin: const EdgeInsets.all(8),
                         decoration: BoxDecoration(
-                          color: isTapped
-                              ? Colors.blue.withOpacity(0.2)
-                              : isSelected
-                                  ? Colors.blue
-                                  : Colors.white,
+                          color: isSelected ? Colors.blue : Colors.white,
                           borderRadius: BorderRadius.circular(12),
                         ),
-                        child: Center(
-                          child: Text(
-                            day.day.toString(),
-                            style: TextStyle(
-                                fontSize: 24,
-                                color:
-                                    isSelected ? Colors.white : Colors.black),
-                          ),
+                        child: Stack(
+                          children: [
+                            Center(
+                              child: Text(
+                                day.day.toString(),
+                                style: TextStyle(
+                                  fontSize: 24,
+                                  color:
+                                      isSelected ? Colors.white : Colors.black,
+                                ),
+                              ),
+                            ),
+                            if (isTicked)
+                              const Positioned(
+                                bottom: 6,
+                                right: -0.5,
+                                child: Icon(Icons.check_circle, size: 12),
+                              ),
+                          ],
                         ),
                       ),
                     );
