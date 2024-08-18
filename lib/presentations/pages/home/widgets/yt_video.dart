@@ -16,29 +16,35 @@ class YtVideoPlayer extends StatefulWidget {
   State<YtVideoPlayer> createState() => _YtVideoPlayerState();
 }
 
-class _YtVideoPlayerState extends State<YtVideoPlayer> {
+class _YtVideoPlayerState extends State<YtVideoPlayer>
+    with AutomaticKeepAliveClientMixin {
   YoutubePlayerController? _playerController;
 
   @override
   void initState() {
     super.initState();
-    final videoId = YoutubePlayer.convertUrlToId(widget.videoUrl);
-    _playerController = YoutubePlayerController(
-      initialVideoId: videoId!,
-      flags: const YoutubePlayerFlags(
-        disableDragSeek: true,
-        hideControls: false,
-        forceHD: true,
-        autoPlay: false,
-        mute: false,
-      ),
-    );
-    _playerController!.addListener(() {
-      if (_playerController!.value.isPlaying) {
-        widget.onPlay(_playerController!);
-      }
-    });
+
+      final videoId = YoutubePlayer.convertUrlToId(widget.videoUrl);
+      _playerController = YoutubePlayerController(
+        initialVideoId: videoId!,
+        flags: const YoutubePlayerFlags(
+          disableDragSeek: true,
+          hideControls: false,
+          forceHD: false,
+          autoPlay: false,
+          mute: false,
+        ),
+      );
+      _playerController!.addListener(() {
+        if (_playerController!.value.isPlaying) {
+          widget.onPlay(_playerController!);
+        }
+      });
+
   }
+
+  @override
+  bool get wantKeepAlive => true;
 
   @override
   void dispose() {
@@ -48,6 +54,7 @@ class _YtVideoPlayerState extends State<YtVideoPlayer> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return ClipRRect(
       clipBehavior: Clip.hardEdge,
       borderRadius: BorderRadius.circular(32),

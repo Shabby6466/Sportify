@@ -7,6 +7,7 @@ import 'package:sportify/presentations/pages/home/widgets/video.dart';
 import 'package:sportify/presentations/pages/home/widgets/video_urls.dart';
 import 'package:sportify/presentations/pages/themes/image_const.dart';
 import 'package:sportify/widgets/main_scaffold.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -16,6 +17,16 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  YoutubePlayerController? _activeController;
+
+  void _onPlay(YoutubePlayerController playerController) {
+    if (_activeController != null && _activeController != playerController) {
+      _activeController!.pause();
+    }
+    setState(() {
+      _activeController = playerController;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     final screenUtil = GetIt.I<ScreenUtil>();
@@ -95,7 +106,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
               ),
-              HorizontalList(),
+              HorizontalList(onPlay: _onPlay,),
               Padding(
                 padding: EdgeInsets.only(
                     left: screenUtil.setWidth(30),

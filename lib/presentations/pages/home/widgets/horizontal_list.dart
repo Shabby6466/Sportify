@@ -6,14 +6,9 @@ import 'package:sportify/presentations/pages/home/widgets/yt_video.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class HorizontalList extends StatelessWidget {
-  late YoutubePlayerController _activeController;
+  final Function(YoutubePlayerController) onPlay;
 
-  void _onPlay(YoutubePlayerController playerController) {
-    if (_activeController != null && _activeController != playerController) {
-      _activeController!.pause();
-    }
-    _activeController = playerController;
-  }
+  HorizontalList({required this.onPlay});
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +26,7 @@ class HorizontalList extends StatelessWidget {
             width: 180,
             child: YtVideoPlayer(
               videoUrl: VideoUrls.whyStartCalisthenics,
-              onPlay: _onPlay,
+              onPlay: onPlay,
             ),
           ),
           SizedBox(width: screenUtil.setWidth(15)),
@@ -40,7 +35,7 @@ class HorizontalList extends StatelessWidget {
             width: 180,
             child: YtVideoPlayer(
               videoUrl: VideoUrls.checkForm,
-              onPlay: _onPlay,
+              onPlay: onPlay,
             ),
           ),
           SizedBox(width: screenUtil.setWidth(15)),
@@ -49,7 +44,7 @@ class HorizontalList extends StatelessWidget {
             width: 180,
             child: YtVideoPlayer(
               videoUrl: VideoUrls.breakDownYourGoals,
-              onPlay: _onPlay,
+              onPlay: onPlay,
             ),
           ),
         ],
