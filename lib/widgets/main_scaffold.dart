@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
@@ -11,7 +10,8 @@ class MainScaffold extends StatelessWidget {
   final bodyContainer;
   final title;
 
-  const MainScaffold({super.key, this.myAppBar, this.bodyContainer, this.title});
+  const MainScaffold(
+      {super.key, this.myAppBar, this.bodyContainer, this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -19,32 +19,26 @@ class MainScaffold extends StatelessWidget {
     return Scaffold(
       extendBodyBehindAppBar: true,
       backgroundColor: MyColors.bgWhite,
-      appBar:AppBar(
+      appBar: AppBar(
         surfaceTintColor: MyColors.bgWhite,
         toolbarHeight: 80,
         title: Text(
           title,
           style: Theme.of(context).textTheme.labelLarge!.copyWith(
-            fontSize: screenUtil.setSp(24),
-            fontWeight: FontWeight.bold,
-          ),
+                fontSize: screenUtil.setSp(24),
+                fontWeight: FontWeight.bold,
+              ),
         ),
         actions: [
-          const Text("Sign Out"),
-          GestureDetector(
-            onTap: (){
-              navigation.go(context, NavigationStrings.login);
-            },
-            child: Icon(CupertinoIcons.decrease_quotelevel,
-                size: screenUtil.setHeight(25)),
-          ),
-          SizedBox(
-            width: screenUtil.setWidth(30),
-          ),
+          TextButton(
+              onPressed: () {
+                navigation.go(context, NavigationStrings.login);
+              },
+              child: const Text("Sign out")),
         ],
         backgroundColor: MyColors.bgWhite,
       ),
-      body: SingleChildScrollView(child: bodyContainer),
+      body: SingleChildScrollView(child:  bodyContainer,),
     );
   }
 }

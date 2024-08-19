@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -181,8 +180,7 @@ class _CalorieCalculatorState extends State<CalorieCalculator> {
                     width: MediaQuery.sizeOf(context).width,
                     height: screenUtil.setHeight(200),
                     decoration: BoxDecoration(
-                        color: MyColors.buttonPrimary.withOpacity(0.14
-                        ),
+                        color: MyColors.buttonPrimary.withOpacity(0.14),
                         borderRadius:
                             BorderRadius.circular(screenUtil.radius(10))),
                     child: Padding(

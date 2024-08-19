@@ -3,7 +3,6 @@ import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class YtVideoPlayer extends StatefulWidget {
   final String videoUrl;
-
   final Function(YoutubePlayerController) onPlay;
 
   const YtVideoPlayer({
@@ -16,35 +15,47 @@ class YtVideoPlayer extends StatefulWidget {
   State<YtVideoPlayer> createState() => _YtVideoPlayerState();
 }
 
-class _YtVideoPlayerState extends State<YtVideoPlayer>
-    with AutomaticKeepAliveClientMixin {
+class _YtVideoPlayerState extends State<YtVideoPlayer> {
+  bool isPlayerReady = false;
+  bool isLoading = true;
   YoutubePlayerController? _playerController;
+
+  void initializePlayer() {
+    Future.delayed(const Duration(seconds: 1), () {
+      final videoId = YoutubePlayer.convertUrlToId(widget.videoUrl);
+      if (videoId != null) {
+        _playerController = YoutubePlayerController(
+          initialVideoId: videoId!,
+          flags: const YoutubePlayerFlags(
+            useHybridComposition: false,
+            enableCaption: false,
+            disableDragSeek: true,
+            hideControls: false,
+            forceHD: false,
+            autoPlay: false,
+            mute: false,
+          ),
+        );
+        _playerController!.addListener(() {
+          if (_playerController!.value.isPlaying) {
+            widget.onPlay(_playerController!);
+          }
+        });
+        if (mounted) {
+          setState(() {
+            isPlayerReady = true;
+            isLoading = false;
+          });
+        }
+      }
+    });
+  }
 
   @override
   void initState() {
     super.initState();
-
-      final videoId = YoutubePlayer.convertUrlToId(widget.videoUrl);
-      _playerController = YoutubePlayerController(
-        initialVideoId: videoId!,
-        flags: const YoutubePlayerFlags(
-          disableDragSeek: true,
-          hideControls: false,
-          forceHD: false,
-          autoPlay: false,
-          mute: false,
-        ),
-      );
-      _playerController!.addListener(() {
-        if (_playerController!.value.isPlaying) {
-          widget.onPlay(_playerController!);
-        }
-      });
-
+    initializePlayer();
   }
-
-  @override
-  bool get wantKeepAlive => true;
 
   @override
   void dispose() {
@@ -54,10 +65,39 @@ class _YtVideoPlayerState extends State<YtVideoPlayer>
 
   @override
   Widget build(BuildContext context) {
-    super.build(context);
-    return YoutubePlayer(
-      controller: _playerController!,
-      showVideoProgressIndicator: true,
+    if (isPlayerReady) {
+      return Stack(
+        children: [
+          YoutubePlayer(
+            controller: _playerController!,
+            showVideoProgressIndicator: true,
+            onReady: () {
+              if (mounted) {
+                setState(() {
+                  isLoading = false;
+                });
+              }
+            },
+          ),
+          if (isLoading)
+            const Center(
+              child: CircularProgressIndicator(),
+            ),
+        ],
+      );
+    }
+    return GestureDetector(
+      onTap: initializePlayer,
+      child: Image.network(
+        'https://img.youtube.com/vi/${YoutubePlayer.convertUrlToId(widget.videoUrl)}/0.jpg',
+        fit: BoxFit.cover,
+        errorBuilder:
+            (BuildContext context, Object exception, StackTrace? stackTrace) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        },
+      ),
     );
   }
 }
