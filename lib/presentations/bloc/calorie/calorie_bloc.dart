@@ -13,6 +13,9 @@ class CalorieBloc extends Bloc<CalorieEvent, CalorieState> {
     on<GenderChanged>(_onGenderChanged);
     on<ActivityChanged>(_activityChanged);
     on<CalorieCalculation>(calorieCalculation);
+    on<ResetCalorieState>((event, emit) {
+      emit(CalorieInitial());
+    });
   }
 
   void _onAgeChanged(AgeChanged event, Emitter<CalorieState> emit) {

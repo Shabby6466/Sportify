@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
-import 'package:intl/intl.dart';
 import 'package:sportify/presentations/bloc/calendar/calendar_bloc.dart';
+import 'package:sportify/presentations/pages/calendar/widgets/container_header.dart';
 
 class CustomCalendar extends StatefulWidget {
   const CustomCalendar({super.key});
@@ -30,7 +30,7 @@ class _CustomCalendarState extends State<CustomCalendar> {
         Padding(
           padding: EdgeInsets.only(
               left: screenUtil.setWidth(20), right: screenUtil.setWidth(16)),
-          child: buildContainerHeader(context),
+          child: const BuildContainerHeader(),
         ),
         SizedBox(height: screenUtil.setHeight(20)),
         Row(
@@ -126,14 +126,4 @@ class _CustomCalendarState extends State<CustomCalendar> {
       ],
     );
   }
-}
-
-Widget buildContainerHeader(BuildContext context) {
-  return Text(
-    DateFormat.MMMM().format(DateTime.now()),
-    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-          fontSize: screenUtil.setSp(30),
-          fontWeight: FontWeight.bold,
-        ),
-  );
 }

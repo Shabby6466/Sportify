@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
 import 'package:sportify/presentations/pages/calendar/custom_calendar.dart';
 import 'package:sportify/presentations/pages/calendar/widgets/days_counter.dart';
+import 'package:sportify/widgets/divider.dart';
 import 'package:sportify/widgets/main_scaffold.dart';
 
 class Calendar extends StatelessWidget {
@@ -15,11 +16,7 @@ class Calendar extends StatelessWidget {
       title: "Fitness Planner",
       bodyContainer: Column(
         children: [
-          Padding(
-            padding: EdgeInsets.fromLTRB(
-                screenUtil.setSp(0), 80, screenUtil.setSp(0), 0),
-            child: const Divider(),
-          ),
+          const MyDivider(),
           Padding(
             padding: EdgeInsets.all(screenUtil.setHeight(12)),
             child: const CustomCalendar(),

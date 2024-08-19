@@ -63,3 +63,5 @@ class CalorieCalculation extends CalorieEvent {
   @override
   List<Object> get props => [calorie, visible];
 }
+
+class ResetCalorieState extends CalorieEvent {}

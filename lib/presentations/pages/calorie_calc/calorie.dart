@@ -22,6 +22,12 @@ class _CalorieCalculatorState extends State<CalorieCalculator> {
   bool visible = false;
 
   @override
+  void dispose() {
+    context.read<CalorieBloc>().add(ResetCalorieState());
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     MyTextFields textFields = MyTextFields();
     final screenUtil = GetIt.I<ScreenUtil>();
