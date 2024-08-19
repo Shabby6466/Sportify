@@ -56,9 +56,10 @@ class ActivityChanged extends CalorieEvent {
 
 class CalorieCalculation extends CalorieEvent {
   final double calorie;
+  final bool visible;
 
-  const CalorieCalculation(this.calorie);
+  const CalorieCalculation(this.calorie, this.visible);
 
   @override
-  List<Object> get props => [calorie];
+  List<Object> get props => [calorie, visible];
 }

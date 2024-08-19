@@ -37,13 +37,15 @@ class CalorieBloc extends Bloc<CalorieEvent, CalorieState> {
 
   void calorieCalculation(
       CalorieCalculation event, Emitter<CalorieState> emit) {
+    bool _visible = true;
     final calorie = calculateCalorie(
-        age: state.age,
-        isMale: state.isMale,
-        weight: state.weight,
-        height: state.height,
-        activityLevel: state.activityLevel);
-    emit(state.copyWith(calories: calorie));
+      age: state.age,
+      isMale: state.isMale,
+      weight: state.weight,
+      height: state.height,
+      activityLevel: state.activityLevel,
+    );
+    emit(state.copyWith(calories: calorie, visible: _visible));
   }
 
   double calculateCalorie({
