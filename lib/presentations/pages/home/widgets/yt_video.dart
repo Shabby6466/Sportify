@@ -33,7 +33,6 @@ class _YtVideoPlayerState extends State<YtVideoPlayer> {
             hideControls: false,
             forceHD: false,
             autoPlay: false,
-            mute: false,
           ),
         );
         _playerController!.addListener(() {
