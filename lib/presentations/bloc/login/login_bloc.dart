@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 part 'login_event.dart';
@@ -18,7 +19,10 @@ Future<void> onLoginSubmitted(
 
   try {
     await Future.delayed(const Duration(seconds: 3));
+    // final prefs = GetIt.instance<SharedPreferences>();
+
     final prefs = await SharedPreferences.getInstance();
+
     final storedEmail = prefs.getString('email');
     final storedPassword = prefs.getString('password');
 
