@@ -64,6 +64,58 @@ class CalendarBloc extends Bloc<CalendarEvent, CalendarState> {
         emit(currentState.copyWith(tickedDates: updatedTickedDates));
       }
     });
+
+    on<NextMonthEvent>((event, emit) async {
+      if (state is CalendarStateLoaded) {
+        final currentState = state as CalendarStateLoaded;
+        final currentMonth = currentState.days.first.month;
+        final currentYear = currentState.days.first.year;
+
+        final nextMonth = currentMonth == 12 ? 1 : currentMonth + 1;
+        final nextYear = currentMonth == 12 ? currentYear + 1 : currentYear;
+
+        final List<DateTime> nextMonthDays = [];
+        final daysInNextMonth = DateTime(nextYear, nextMonth + 1, 0).day;
+
+        for (int i = 1; i <= daysInNextMonth; i++) {
+          nextMonthDays.add(DateTime(nextYear, nextMonth, i));
+        }
+
+        final tickedDates = await loadTickedDates();
+
+        emit(CalendarStateLoaded(
+          days: nextMonthDays,
+          selectedDate: null,
+          tickedDates: tickedDates,
+        ));
+      }
+    });
+
+    on<PrevMonthEvent>((event, emit) async {
+      if (state is CalendarStateLoaded) {
+        final currentState = state as CalendarStateLoaded;
+        final currentMonth = currentState.days.first.month;
+        final currentYear = currentState.days.first.year;
+
+        final prevMonth = currentMonth == 1 ? 12 : currentMonth - 1;
+        final prevYear = currentMonth == 1 ? currentYear - 1 : currentYear;
+
+        final List<DateTime> prevMonthDays = [];
+        final daysInPrevMonth = DateTime(prevYear, prevMonth + 1, 0).day;
+
+        for (int i = 1; i <= daysInPrevMonth; i++) {
+          prevMonthDays.add(DateTime(prevYear, prevMonth, i));
+        }
+
+        final tickedDates = await loadTickedDates();
+
+        emit(CalendarStateLoaded(
+          days: prevMonthDays,
+          selectedDate: null,
+          tickedDates: tickedDates,
+        ));
+      }
+    });
   }
 }
 

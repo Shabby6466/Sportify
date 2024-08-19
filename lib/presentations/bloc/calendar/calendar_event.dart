@@ -18,6 +18,10 @@ class TapEvent extends CalendarEvent {
   List<Object?> get props => [day];
 }
 
+class NextMonthEvent extends CalendarEvent {}
+
+class PrevMonthEvent extends CalendarEvent {}
+
 class LongPressEvent extends CalendarEvent {
   final DateTime ticked;
 
