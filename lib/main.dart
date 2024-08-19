@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get_it/get_it.dart';
 import 'package:sportify/presentations/bloc/calendar/calendar_bloc.dart';
 import 'package:sportify/presentations/bloc/calorie/calorie_bloc.dart';
 import 'package:sportify/presentations/bloc/login/login_bloc.dart';
@@ -9,8 +8,10 @@ import 'package:sportify/presentations/bloc/singup/signup_bloc.dart';
 import 'package:sportify/presentations/routes/routes.dart';
 import 'package:sportify/services/di/getit.dart';
 
-void main() {
-  setupLocator();
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await setupLocator();
   runApp(const MyApp());
 }
 
@@ -19,7 +20,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenUtil = GetIt.I<ScreenUtil>();
     return ScreenUtilInit(
       designSize: const Size(390, 844),
       ensureScreenSize: true,

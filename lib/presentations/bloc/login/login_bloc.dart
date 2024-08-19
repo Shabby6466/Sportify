@@ -19,9 +19,11 @@ Future<void> onLoginSubmitted(
 
   try {
     await Future.delayed(const Duration(seconds: 3));
-    // final prefs = GetIt.instance<SharedPreferences>();
 
-    final prefs = await SharedPreferences.getInstance();
+
+    final prefs = GetIt.instance<SharedPreferences>();
+
+    // final prefs = await SharedPreferences.getInstance();
 
     final storedEmail = prefs.getString('email');
     final storedPassword = prefs.getString('password');

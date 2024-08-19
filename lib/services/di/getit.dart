@@ -6,10 +6,10 @@ import 'package:sportify/presentations/routes/navigation.dart';
 
 final locator = GetIt.I;
 
-void setupLocator() async {
+Future setupLocator() async {
   locator.registerSingleton<AppNavigation>(NavigationImpl());
   locator.registerSingleton<ScreenUtil>(ScreenUtil());
   locator.registerSingleton<VideoController>(VideoController());
-  final sharedPrefs = await SharedPreferences.getInstance();
-  locator.registerSingleton<SharedPreferences>(sharedPrefs);
+  final sharedPreferences = await SharedPreferences.getInstance();
+  locator.registerSingleton(sharedPreferences);
 }
