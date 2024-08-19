@@ -25,7 +25,7 @@ class _YtVideoPlayerState extends State<YtVideoPlayer> {
       final videoId = YoutubePlayer.convertUrlToId(widget.videoUrl);
       if (videoId != null) {
         _playerController = YoutubePlayerController(
-          initialVideoId: videoId!,
+          initialVideoId: videoId,
           flags: const YoutubePlayerFlags(
             useHybridComposition: false,
             enableCaption: false,
